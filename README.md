@@ -10,6 +10,6 @@ sudo http-server
 
 ## Correr en produccion con docker
 sudo npm install <br/>
-sudo ng build --prod l<br/>
+sudo ng build --prod <br/>
 sudo docker build . -t angular/applaudo <br/>
 sudo docker run -p 3000:80 angular/applaudo
