@@ -1,0 +1,14 @@
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+* {
+  font-family: Roboto;
+}
+.is-loading ::ng-deep .mat-option-text {
+  display: flex;
+  justify-content: center;
+}
+.modal-xl .modal-lg {
+  max-width: 90%;
+}

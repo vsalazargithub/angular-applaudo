@@ -1,0 +1,12 @@
+<ngb-carousel *ngIf="images && images.length > 0">
+  <ng-template ngbSlide *ngFor="let result of images; index as i">
+    <div class="picsum-img-wrapper">
+      <img class="image-center" [src]="result.getPath()">
+    </div>
+    <div class="carousel-caption"></div>
+  </ng-template>
+</ngb-carousel>
+<div *ngIf="images.length <= 0">
+  Empty images,nothing to display
+</div>
+<button class="btn btn-primary" type="button" (click)="modal.close('Close click')" class="glyphicon glyphicon-check">Close</button>

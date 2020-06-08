@@ -1,0 +1,20 @@
+'use strict';
+export const API_BASE_URL = 'https://gateway.marvel.com:443/v1/public';
+export const API_CHARACTERS_URL = API_BASE_URL + '/characters';
+export const API_CHARACTERS_BY_ID_URL = API_BASE_URL + '/characters/:id';
+export const API_COMICS_BY_ID_URL = API_BASE_URL + '/comics/:id';
+export const API_STORIES_BY_ID_URL = API_BASE_URL + '/stories/:id';
+export const API_COMICS_URL = API_BASE_URL + '/comics';
+export const API_STORIES_URL = API_BASE_URL + '/stories';
+export const API_CHARACTER_COMICS_URL = API_BASE_URL + '/characters/:id/comics';
+export const API_CHARACTERS_STORIES_BY_ID_URL = API_BASE_URL + '/characters/:id/stories';
+export const API_COMICS_CHARACTERS_URL = API_BASE_URL + '/comics/:id/characters';
+export const API_COMICS_STORIES_URL = API_BASE_URL + '/comics/:id/stories';
+export const API_STORIES_CHARACTERS_URL = API_BASE_URL + '/stories/:id/characters';
+export const API_STORIES_COMICS_URL = API_BASE_URL + '/stories/:id/comics';
+export const PUBLIC_KEY = '58e8402d40de8f4d933127cf2d8c2b58';
+export const PRIVATE_KEY = 'e9b446c0bf0ebf7bc5eb19afa7dd0de5e22bb56c';
+export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_STORY_PAGE_SIZE = 5;
+export const DEFAULT_AUTO_COMPLETE_SIZE = 10;
+//# sourceMappingURL=app.const.js.map

@@ -1,0 +1,114 @@
+<p style="font-weight: bold;font-size: large">Marvel Characters</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <p style="font-weight: bold;font-size: large">Stories</p>
+  </div>
+  <div class="modal-body">
+    <app-stories [modal]="modal" (messageEvent)="onChangeStory($event)"></app-stories>
+  </div>
+</ng-template>
+<ng-template #thumbnail let-modal>
+  <div class="modal-header">
+    <p style="font-weight: bold;font-size: large">Stories</p>
+  </div>
+  <div class="modal-body">
+    <app-image-viewer [modal]="modal" [images]="images"></app-image-viewer>
+  </div>
+</ng-template>
+<table>
+    <tbody>
+        <tr>
+          <td>
+            <p style="font-weight: bold">Name:</p>
+          </td>
+          <td style="width: 60em;">
+            <input class="form-control"  [(ngModel)]="name"  (change)="onChangeName($event)">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="font-weight: bold">Comic:</p>
+          </td>
+          <td style="width: 60em;">
+            <form class="example-form" [formGroup]='comicForm'>
+              <mat-form-field style="width: 60em;"  >
+                <input matInput  placeholder="Choose a comic" [matAutocomplete]="auto" formControlName='comicInput'>
+              </mat-form-field>
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="onDisplayComic" [panelWidth]="600" >
+                <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+                <ng-container *ngIf="!isLoading">
+                  <mat-option *ngFor="let autocompleteResponse of filteredComics" [value]="autocompleteResponse">
+                    <span>{{ autocompleteResponse.name }}</span>
+                    <small> | ID: {{autocompleteResponse.id}}</small>
+                  </mat-option>
+                </ng-container>
+              </mat-autocomplete>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="font-weight: bold">Story:</p>
+          </td>
+          <td>
+              <table>
+                <tbody>
+                    <tr>
+                      <td style="width: 60em;">
+                        <textarea class="form-control" readonly [(ngModel)]="storyTitle"></textarea>
+                        <input  [(ngModel)]="story" type="hidden">
+                      </td>
+                      <td>
+                        <button class="btn btn-primary" (click)="open(content)">...</button>
+                      </td>
+                    </tr>
+                </tbody>
+             </table>
+          </td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary" (click)="search()">Search</button></td>
+            <td><button class="btn btn-primary" (click)="clear()">Clear</button></td>
+        </tr>
+     </tbody>
+</table>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Modified</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let result of characterResponseResult; index as i">
+    <th scope="row">{{result.id}}</th>
+    <td>
+      {{ result.name }}
+    </td>
+    <td>{{ result.description}}</td>
+    <td>{{ result.modified}}
+    <td><button class="btn btn-primary" (click)="viewThumbnail(result, thumbnail)">View Thumbnail</button></td>
+    <td><a routerLink="/character-comic/{{result.id}}">Character's Comics</a></td>
+    <td><a routerLink="/character-story/{{result.id}}">Character's Stories</a></td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="col-12 justify-content-center mb-5">
+  <ngb-pagination [collectionSize]="totalItems"
+                  [pageSize]="10"
+                  [(page)]="page"
+                  [maxSize]="maxSize"
+                  [rotate]="true"
+                  [ellipses]="true"
+                  [boundaryLinks]="true"
+                  (pageChange)="loadPage($event)"></ngb-pagination>
+</div>
+

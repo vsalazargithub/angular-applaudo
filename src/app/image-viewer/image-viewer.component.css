@@ -1,0 +1,12 @@
+.carousel-control-prev-icon{
+  background-image: url('./seta_prim.png')
+}
+.carousel-control-next-icon{
+  background-image: url('./seta_ult.png')
+}
+.image-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
